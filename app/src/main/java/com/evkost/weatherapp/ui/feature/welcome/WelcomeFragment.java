@@ -13,13 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.evkost.weatherapp.databinding.FragmentWelcomeBinding;
 
 public class WelcomeFragment extends Fragment {
-    private WelcomeViewModel viewModel;
     private FragmentWelcomeBinding binding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(WelcomeViewModel.class);
     }
 
     @Override

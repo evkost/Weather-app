@@ -1,9 +1,14 @@
 package com.evkost.weatherapp.data.remote.impl;
 
+import com.evkost.weatherapp.data.Result;
+import com.evkost.weatherapp.data.remote.result.ResultCallAdapterFactory;
 import com.evkost.weatherapp.data.remote.WeatherRemoteDataSource;
 import com.evkost.weatherapp.model.dto.CurrentWeatherDto;
 import com.evkost.weatherapp.model.dto.ForecastDto;
+import com.evkost.weatherapp.model.response.GetCurrentWeatherResponse;
+import com.evkost.weatherapp.model.response.GetForecastResponse;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.core.Single;
@@ -24,36 +29,43 @@ public class RetrofitWeatherRemoteDataSource implements WeatherRemoteDataSource 
             .build()
             .create(RemoteDataApi.class);
 
+    @Inject
+    public RetrofitWeatherRemoteDataSource() {}
+
     @Override
-    public Single<Response<CurrentWeatherDto>> getCurrentWeather(
+    public Single<Result<CurrentWeatherDto>> getCurrentWeather(
             String key, String city, String aqi
     ) {
-        return remoteDataApi.getCurrentWeather(key, city, aqi);
+        return remoteDataApi.getCurrentWeather(key, city, aqi)
+                .map(Result::fromResponse)
+                .map(result -> result.map(GetCurrentWeatherResponse::getCurrentWeather));
     }
 
     @Override
-    public Single<Response<ForecastDto>> getForecast(
-            String key, String city, Integer days, String includeAqi, String includeAlerts
+    public Single<Result<ForecastDto>> getForecast(
+            String key, String city, Integer days, String date, String includeAqi, String includeAlerts
     ) {
-        return remoteDataApi.getForecast(key, city, days, includeAqi, includeAlerts);
+        return remoteDataApi.getForecast(key, city, days, date, includeAqi, includeAlerts)
+                .map(Result::fromResponse)
+                .map(result -> result.map(GetForecastResponse::getForecast));
     }
 
     private interface RemoteDataApi {
         @GET("/v1/current.json")
-        Single<Response<CurrentWeatherDto>> getCurrentWeather(
+        Single<Response<GetCurrentWeatherResponse>> getCurrentWeather(
                 @Query("key") String key,
                 @Query("q") String city,
                 @Query("aqi") String aqi
         );
 
         @GET("/v1/forecast.json")
-        Single<Response<ForecastDto>> getForecast(
+        Single<Response<GetForecastResponse>> getForecast(
                 @Query("key") String key,
                 @Query("q") String city,
                 @Query("days") Integer days,
+                @Query("dt") String date,
                 @Query("aqi") String includeAqi,
                 @Query("alerts") String includeAlerts
         );
     }
-
 }

@@ -1,3 +1,5 @@
+val weatherApiKey: String by project
+
 plugins {
     alias(libs.plugins.com.android.application)
     id("com.google.dagger.hilt.android")
@@ -34,6 +36,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    buildTypes.forEach {
+        it.buildConfigField("String", "WEATHER_API_KEY", weatherApiKey)
     }
 }
 
@@ -52,17 +59,20 @@ dependencies {
 
     implementation( "androidx.lifecycle:lifecycle-viewmodel:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-livedata:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-reactivestreams:2.6.2")
 
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation("androidx.datastore:datastore:1.0.0")
-    implementation("androidx.datastore:datastore-rxjava3:1.0.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
 
     implementation ("androidx.core:core-splashscreen:1.0.1")
 
     implementation("com.google.dagger:hilt-android:2.44")
     annotationProcessor("com.google.dagger:hilt-android-compiler:2.44")
+
+    implementation ("me.relex:circleindicator:2.1.6")
 
     implementation(libs.appcompat)
     implementation(libs.material)

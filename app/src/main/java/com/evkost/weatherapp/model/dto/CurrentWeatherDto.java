@@ -31,7 +31,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "gust_kph"
 })
 public class CurrentWeatherDto {
-
     @JsonProperty("last_updated_epoch")
     private Integer lastUpdatedEpoch;
     @JsonProperty("last_updated")
@@ -43,7 +42,7 @@ public class CurrentWeatherDto {
     @JsonProperty("is_day")
     private Integer isDay;
     @JsonProperty("condition")
-    private Condition condition;
+    private WeatherConditionDto condition;
     @JsonProperty("wind_mph")
     private Double windMph;
     @JsonProperty("wind_kph")
@@ -57,17 +56,17 @@ public class CurrentWeatherDto {
     @JsonProperty("pressure_in")
     private Double pressureIn;
     @JsonProperty("precip_mm")
-    private Double precipMm;
+    private Double precipitationMm;
     @JsonProperty("precip_in")
-    private Double precipIn;
+    private Double precipitationIn;
     @JsonProperty("humidity")
     private Integer humidity;
     @JsonProperty("cloud")
     private Integer cloud;
     @JsonProperty("feelslike_c")
-    private Double feelslikeC;
+    private Double feelsLikeC;
     @JsonProperty("feelslike_f")
-    private Double feelslikeF;
+    private Double feelsLikeF;
     @JsonProperty("vis_km")
     private Double visKm;
     @JsonProperty("vis_miles")
@@ -130,12 +129,12 @@ public class CurrentWeatherDto {
     }
 
     @JsonProperty("condition")
-    public Condition getCondition() {
+    public WeatherConditionDto getCondition() {
         return condition;
     }
 
     @JsonProperty("condition")
-    public void setCondition(Condition condition) {
+    public void setCondition(WeatherConditionDto condition) {
         this.condition = condition;
     }
 
@@ -200,23 +199,23 @@ public class CurrentWeatherDto {
     }
 
     @JsonProperty("precip_mm")
-    public Double getPrecipMm() {
-        return precipMm;
+    public Double getPrecipitationMm() {
+        return precipitationMm;
     }
 
     @JsonProperty("precip_mm")
-    public void setPrecipMm(Double precipMm) {
-        this.precipMm = precipMm;
+    public void setPrecipitationMm(Double precipitationMm) {
+        this.precipitationMm = precipitationMm;
     }
 
     @JsonProperty("precip_in")
-    public Double getPrecipIn() {
-        return precipIn;
+    public Double getPrecipitationIn() {
+        return precipitationIn;
     }
 
     @JsonProperty("precip_in")
-    public void setPrecipIn(Double precipIn) {
-        this.precipIn = precipIn;
+    public void setPrecipitationIn(Double precipitationIn) {
+        this.precipitationIn = precipitationIn;
     }
 
     @JsonProperty("humidity")
@@ -240,23 +239,23 @@ public class CurrentWeatherDto {
     }
 
     @JsonProperty("feelslike_c")
-    public Double getFeelslikeC() {
-        return feelslikeC;
+    public Double getFeelsLikeC() {
+        return feelsLikeC;
     }
 
     @JsonProperty("feelslike_c")
-    public void setFeelslikeC(Double feelslikeC) {
-        this.feelslikeC = feelslikeC;
+    public void setFeelsLikeC(Double feelsLikeC) {
+        this.feelsLikeC = feelsLikeC;
     }
 
     @JsonProperty("feelslike_f")
-    public Double getFeelslikeF() {
-        return feelslikeF;
+    public Double getFeelsLikeF() {
+        return feelsLikeF;
     }
 
     @JsonProperty("feelslike_f")
-    public void setFeelslikeF(Double feelslikeF) {
-        this.feelslikeF = feelslikeF;
+    public void setFeelsLikeF(Double feelsLikeF) {
+        this.feelsLikeF = feelsLikeF;
     }
 
     @JsonProperty("vis_km")

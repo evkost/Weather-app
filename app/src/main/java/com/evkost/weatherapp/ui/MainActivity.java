@@ -20,33 +20,28 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
 
     @Override
-    @SuppressWarnings("null")
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen
                 .installSplashScreen(this)
-                .setKeepOnScreenCondition(() -> !viewModel.getUiState().getValue().isLoaded());
+                .setKeepOnScreenCondition(() -> !viewModel.getMainUiStateLiveData().getValue().isLoaded());
 
         super.onCreate(savedInstanceState);
         setupBinding();
         initViewModel();
         setupNavController();
 
-        viewModel.getUiState().observe(this, uiState -> {
-            if (uiState.isLoaded()) {
-                if (uiState.getDestination() == null) {
-                    return;
-                }
+        viewModel.getSideEffectLiveData().observe(this, sideEffect -> {
+            if (sideEffect == null) return;
 
-                switch (uiState.getDestination()) {
-                    case HOME:
-                        MainNavGraphDirections.actionToHomeFragment();
-                        break;
-                    case WELCOME:
-                        MainNavGraphDirections.actionToWelcomeFragment();
-                        break;
-                }
-                viewModel.navActionApplied();
+            switch (sideEffect.getToDestination()) {
+                case HOME:
+                    MainNavGraphDirections.actionToHomeFragment();
+                    break;
+                case WELCOME:
+                    MainNavGraphDirections.actionToWelcomeFragment();
+                    break;
             }
+            viewModel.sideEffectAccepted();
         });
     }
     private void initViewModel() {

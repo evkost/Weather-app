@@ -1,4 +1,4 @@
-package com.evkost.weatherapp.ui.feature.welcome;
+package com.evkost.weatherapp.ui.feature.welcome.setup;
 
 import androidx.lifecycle.ViewModel;
 
@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class WelcomeViewModel extends ViewModel {
+public class PreferencesSetupViewModel extends ViewModel {
     @Inject
-    public WelcomeViewModel() {
+    public PreferencesSetupViewModel() {
 
     }
 }

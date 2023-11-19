@@ -23,9 +23,9 @@ public class ForecastDayDto {
     @JsonProperty("day")
     private DayWeatherDto day;
     @JsonProperty("astro")
-    private Astro astro;
+    private AstroDto astro;
     @JsonProperty("hour")
-    private List<Hour> hour;
+    private List<ForecastHourDto> hour;
 
     @JsonProperty("date")
     public String getDate() {
@@ -48,32 +48,32 @@ public class ForecastDayDto {
     }
 
     @JsonProperty("day")
-    public Day getDay() {
+    public DayWeatherDto getDay() {
         return day;
     }
 
     @JsonProperty("day")
-    public void setDay(Day day) {
+    public void setDay(DayWeatherDto day) {
         this.day = day;
     }
 
     @JsonProperty("astro")
-    public Astro getAstro() {
+    public AstroDto getAstro() {
         return astro;
     }
 
     @JsonProperty("astro")
-    public void setAstro(Astro astro) {
+    public void setAstro(AstroDto astro) {
         this.astro = astro;
     }
 
     @JsonProperty("hour")
-    public List<Hour> getHour() {
+    public List<ForecastHourDto> getHour() {
         return hour;
     }
 
     @JsonProperty("hour")
-    public void setHour(List<Hour> hour) {
+    public void setHour(List<ForecastHourDto> hour) {
         this.hour = hour;
     }
 

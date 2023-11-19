@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Weather app</string>
+    <string name="home_toolbar_title">Home</string>
+    <string name="settings_toolbar_title">Settings</string>
+    <string name="home_weather_tab_title">Weather</string>
+    <string name="home_forecast_tab_title">Forecast</string>
+    <string name="home_settings_menu_item_title">Settings</string>
+    <string name="current_weather_feels_like_temp_text">Feels like: </string>
+    <string name="base_error_message">Error occurred!</string>
 </resources>

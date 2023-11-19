@@ -28,7 +28,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "uv"
 })
 public class DayWeatherDto {
-
     @JsonProperty("maxtemp_c")
     private Double maxTempC;
     @JsonProperty("maxtemp_f")
